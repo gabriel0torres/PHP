@@ -14,9 +14,9 @@ $mail->Host = 'smtp-mail.outlook.com';
 $mail->Port = 25;
 $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
-$mail->Username = 'viniciuswilliangalli@hotmail.com';
-$mail->Password = 'Izvn@@151220';
-$mail->setFrom('viniciuswilliangalli@hotmail.com', 'vini');
+$mail->Username = '';
+$mail->Password = '';
+$mail->setFrom('email', 'nome');
 
 
 

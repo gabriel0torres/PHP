@@ -19,8 +19,8 @@ $con = mysqli_connect($host,$username,$password,$database);
 ?>
     <form method="POST" action="inicio.php">
         
-        USUÁRIO:<input type="text" name="username" value="username"><br>
-        SENHA:<input type="password" name="password" value="password"><br>
+        USUÁRIO:<input type="text" name="username"><br>
+        SENHA:<input type="password" name="password"><br>
         ENTRAR<input type="submit" name="entrar"> 
 
     </form>
