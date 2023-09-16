@@ -1,0 +1,93 @@
+<?php
+
+//ATENÇÃO
+//ESTA NÃO É UMA CRIPTOGRAFIA SEGURA PARA AMBIENTES DE PRODUÇÃO, FOI CRIADA SOMENTE COM O INTUITO DE ESTUDO.
+
+function criptografa($valor){
+
+    $a = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()?'; //
+    $a = str_split($a);
+
+    $crip = NULL;
+    $n = strlen($valor) - 1;
+    for($i=1; $i <= strlen($valor); $i++){
+ 
+        $y = -abs($i);   
+        $search = substr($valor, $y,1);
+        $search = array_search($search, $a);
+        $new_valor = $search; 
+        if(strlen($valor) - $i == $n){
+
+            $crip = $crip.$new_valor;
+
+        }else{
+            
+            $crip = $crip.'!'.$new_valor;
+            
+        }    
+    
+    }
+    
+    return $crip;
+        
+    }
+
+function descriptografa($valor){
+
+    $a = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()?';
+    $a = str_split($a);
+    $b = explode('!', $valor);
+
+    $descrip = NULL;   
+    foreach($b as $valor){
+
+        $descrip = $a[$valor].$descrip;
+            
+
+    }
+    
+    return $descrip;
+
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criptografia</title>
+</head>
+<body style="text-align: center;">
+
+<main>
+    <h1>ATENÇÃO</h1> <br>
+    <h2>ESTA NÃO É UMA CRIPTOGRAFIA SEGURA PARA AMBIENTES DE PRODUÇÃO, FOI CRIADA SOMENTE COM O INTUITO DE ESTUDO.</h2> <br>
+    <session>
+        <form>
+
+            <label for="valor">Digite uma senha para ser criptografada:</label> <br>
+            <input id="valor" type="password" name="valor"> <br>
+            <button type="submit">CRIPTOGRAFAR</button> <br>
+
+        </form>
+    </session>
+
+    <session>
+        <h2>SENHA CRIPTOGRAFADA: <?php if(isset($_GET['valor'])){
+
+        $valor = $_GET['valor'];
+        echo criptografa($valor);
+        $valor = criptografa($valor);}?> </h2> <br>
+
+
+        <h2>SENHA DESCRIPTOGRAFADA: <?php if(isset($_GET['valor'])){
+
+        echo descriptografa($valor);}?> </h2> <br>
+    </session>
+
+</main>
+    
+</body>
+</html>
