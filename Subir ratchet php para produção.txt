@@ -1,0 +1,18 @@
+Subir ratchet php para produção:
+
+- no apache vamos adicionar esta linha de código:
+ProxyPass "/wss2/" "ws://ip_local_servidor:porta_usada_pelo_ratchet/" 
+(exemplo: ProxyPass "/wss2/" "ws://127.0.0.1:8080/")
+
+
+- em seguida, habilite estes dois módulos do apache, basta descomentar a linha onde eles se localizam
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so
+
+- Restart o apache
+
+- Agora no seu código do client, basta adicionar o seguinte script js para abrir o websocket
+const ws = new WebSocket('wss://seu_dominio/wss2/');
+(exemplo: const ws = new WebSocket('wss://www.example.com.br:9443/wss2/');) a url que vc deve passar no script, deve ser a mesma pela qual vc vai acessar no navegador
+
+
