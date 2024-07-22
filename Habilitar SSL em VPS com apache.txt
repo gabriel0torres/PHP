@@ -1,0 +1,21 @@
+Habilitar SSL em VPS com apache
+
+- instalar certbot
+sudo apt install certbot python3-certbot-apache
+
+-obter um certificado SSL
+sudo certbot --apache -d example.com -d www.example.com
+(substituir o arquivo .ssl já existente)
+
+- habilitar módulo SSL
+sudo a2enmod ssl
+
+- reiniciar apache
+sudo systemctl restart apache2
+
+-renovar automaticamente o certificado 
+sudo crontab -e
+
+e adicionar essa linha
+0 0 * * * /usr/bin/certbot renew --quiet
+
